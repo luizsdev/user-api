@@ -23,7 +23,7 @@ class userController{
                 return res.send(user)
              }
              else{
-                res.status(500)
+                res.send("Didn't Work")
              }
         }
 }
