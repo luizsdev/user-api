@@ -1,0 +1,27 @@
+{
+  "name": "desafiomentoria",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luizsdev/desafio-mentoria-api.git"
+  },
+  "keywords": [],
+  "author": "Luiz Sanches <“luizsdev@gmail.com”>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/luizsdev/desafio-mentoria-api/issues"
+  },
+  "homepage": "https://github.com/luizsdev/desafio-mentoria-api#readme",
+  "dependencies": {
+    "@prisma/client": "^4.2.1",
+    "axios": "^0.27.2",
+    "body-parser": "^1.20.0",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1"
+  }
+}
