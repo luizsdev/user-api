@@ -26,7 +26,7 @@ class userController{
                 return res.send(user)
              }
              else{
-                res.send("Couldn't find user with given ID")
+                res.send("Couldn't find user with given id")
              }
         }
         static async createUser(req,res){
@@ -82,5 +82,28 @@ class userController{
                 res.send("Couldn't find user with given id")
             }
         }
+            static async deleteUser(req,res){
+                const {id} = req.params
+                const parsedId = parseInt(id)
+                const checkUser = await prisma.user.findUnique({
+                    where:{
+                        id:parsedId
+                    }
+                })
+                if(checkUser){
+                    await prisma.user.delete({
+                        where:{
+                            id:parsedId
+                        }
+                    }).then(()=>{
+                        res.send("User deleted sucessfully")
+                    }).catch(()=>{
+                        res.send("Couldn't delete user")
+                    })
+                }
+                else{
+                   res.send("Couldn't not find user with given id")
+                }
+            }
 }
 module.exports = userController;
