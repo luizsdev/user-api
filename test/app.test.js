@@ -18,6 +18,6 @@ test("Check if creating user is working", async () => {
     email: "testmail@gmail.com",
   };
   const res = await request(app).post("/createuser", data);
-  expect(res.text).toBe("User already exists") ||
-    expect(res).toBe("User already exists");
+  expect(res.text).toBe("User already exists");
+  expect(res.text).toBe("User created successfully");
 });
