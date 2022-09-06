@@ -1,10 +1,9 @@
-const { PrismaClient } = require("@prisma/client");
-const { warnEnvConflicts } = require("@prisma/client/runtime");
-const { parse } = require("dotenv");
+import { PrismaClient } from "@prisma/client";
+import {Request,Response} from "express"
 const prisma = new PrismaClient();
 
 class userController {
-  static async getAllUser(req, res) {
+  static async getAllUser(req:Request,res:Response ) {
     const users = await prisma.user.findMany({});
     if (users) {
       res.status(200).send(users);
@@ -13,7 +12,7 @@ class userController {
       res.status(400);
     }
   }
-  static async getUserById(req, res) {
+  static async getUserById(req:Request,res:Response) {
     const toParseId = req.params.id;
     const id = parseInt(toParseId);
     const user = await prisma.user.findUnique({
@@ -27,7 +26,7 @@ class userController {
       res.send("Couldn't find user with given id");
     }
   }
-  static async createUser(req, res) {
+  static async createUser(req:Request,res:Response) {
     const { name, user, email } = await req.body;
     const checkUser = await prisma.user.findFirst({
       where: {
@@ -53,7 +52,7 @@ class userController {
         });
     }
   }
-  static async updateUser(req, res) {
+  static async updateUser(req:Request,res:Response) {
     const { id } = req.params;
     const parsedId = parseInt(id);
     const { user, email, name } = req.body;
@@ -84,7 +83,7 @@ class userController {
       res.status(400).send("Couldn't find user with given id");
     }
   }
-  static async deleteUser(req, res) {
+  static async deleteUser(req:Request,res:Response) {
     const { id } = req.params;
     const parsedId = parseInt(id);
     const checkUser = await prisma.user.findUnique({
@@ -110,4 +109,4 @@ class userController {
     }
   }
 }
-module.exports = userController;
+export default userController;
