@@ -80,7 +80,7 @@ class userController {
           res.status(400).send("Couldn't update user");
         });
     } else {
-      res.status(400).send("Couldn't find user with given id");
+      res.status(400).send("Couldn't find user with given id :P");
     }
   }
   static async deleteUser(req:Request,res:Response) {
