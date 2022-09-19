@@ -23,7 +23,7 @@
   },
   "scripts": {
     "test": "jest",
-    "build": "tsc -w",
+    "build": "tsc",
     "start": "node index.js"
   },
   "repository": {
