@@ -2,7 +2,7 @@
   "name": "desafiomentoria",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./dist/index.js",
   "jest": {
     "moduleFileExtensions": [
       "ts",
