@@ -15,11 +15,11 @@ const options: cors.CorsOptions = {
   ],
   credentials: true,
   methods: 'GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE',
-  origin: "https://portfolio-luizsdev.vercel.app/playground",
+  origin: "https://portfolio-luizsdev.vercel.app",
   preflightContinue: false,
 };
-app.use(cors(options));
-app.options('*', cors(options));
+router.use(cors(options));
+router.options('*', cors(options));
 app.listen(PORT, async () => {
   console.log("Server listening on port " + PORT);
 });
