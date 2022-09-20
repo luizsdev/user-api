@@ -5,7 +5,7 @@ const app = express();
 app.use(express.json());
 app.use("/", router);
 
-app.listen(3000, async () => {
+app.listen(PORT, async () => {
   console.log("Server listening on port " + PORT);
 });
 
