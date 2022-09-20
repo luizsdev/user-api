@@ -18,8 +18,8 @@ const options: cors.CorsOptions = {
   origin: "http://localhost:5173",
   preflightContinue: false,
 };
-router.use(cors(options));
-router.options('*', cors(options));
+app.use(cors(options));
+app.options('*', cors(options));
 app.listen(PORT, async () => {
   console.log("Server listening on port " + PORT);
 });
