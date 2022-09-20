@@ -18,8 +18,8 @@ const options: cors.CorsOptions = {
   origin: "https://portfolio-luizsdev.vercel.app/playground",
   preflightContinue: false,
 };
-app.options('*', cors(options));
 app.use(cors(options));
+app.options('*', cors(options));
 app.listen(PORT, async () => {
   console.log("Server listening on port " + PORT);
 });
