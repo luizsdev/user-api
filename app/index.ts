@@ -6,7 +6,7 @@ app.use(express.json());
 app.use("/", router);
 
 app.listen(3000, async () => {
-  console.log("Server listening on port  ww " + PORT);
+  console.log("Server listening on port " + PORT);
 });
 
 export default app;
