@@ -1,4 +1,4 @@
-import app from "../app/index"
+import app from "../index"
 import supertest from "supertest"
 import { PrismaClient } from "@prisma/client";
 import { request } from "express";
