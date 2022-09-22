@@ -1,6 +1,6 @@
-import { PrismaClient } from "@prisma/client";
 import {Request,Response} from "express"
-const prisma = new PrismaClient();
+import { PrismaClient } from "@prisma/client";
+export const prisma = new PrismaClient();
 
 class userController {
   static async getAllUser(req:Request,res:Response ) {
@@ -34,7 +34,7 @@ class userController {
       },
     });
     if (checkUser) {
-      res.send("User already exists");
+      res.status(200).send("User already exists");
     } else {
       await prisma.user
         .create({

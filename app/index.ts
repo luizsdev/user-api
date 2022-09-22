@@ -1,7 +1,7 @@
 import express from "express";
 import router from "./Routes/userRoutes"
 import cors from "cors"
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 3000
 const app = express();
 router.use(cors())
 app.use(cors())
