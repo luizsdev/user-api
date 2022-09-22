@@ -7,7 +7,7 @@
     "postinstall": "prisma generate",
     "test": "jest",
     "build": "tsc",
-    "start": "node index.js"
+    "start": "node ./app/index.js"
   },
   "repository": {
     "type": "git",
