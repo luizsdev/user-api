@@ -36,9 +36,10 @@ describe("UPDATE ROUTES",()=>{
                 email: "johnxd12@gmail.com"
              },
          })
-            userId = user.id
+            userId = user!.id
          const result = await supertest(app).post(`/updateuser/${userId}`).send(updatingData)
          expect(result.statusCode).toBe(200)
+        
     })
 })
 describe("DELETE ROUTES",()=>{
