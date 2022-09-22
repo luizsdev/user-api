@@ -18,5 +18,4 @@ router.post("/createuser", userController_1.default.createUser);
 router.post("/updateuser/:id", userController_1.default.updateUser);
 //DELETE AN USER PASSING AN ID
 router.get("/deleteuser/:id", userController_1.default.deleteUser);
-//TEST BUILD
 exports.default = router;
