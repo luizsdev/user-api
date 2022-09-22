@@ -53,9 +53,6 @@ class userController {
             if (checkUser) {
                 res.status(200).send("User already exists");
             }
-            else if (email === "johnxd12@gmail.com") {
-                res.status(400).send("You can't use that e-mail to create an user");
-            }
             else {
                 yield exports.prisma.user
                     .create({

@@ -1,7 +1,6 @@
 import app from "../index"
 import supertest from "supertest"
 import { PrismaClient } from "@prisma/client";
-import { request } from "express";
 const prisma = new PrismaClient();
 let userId:Number;
 describe("GET ROUTES",()=>{
