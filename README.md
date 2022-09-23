@@ -24,6 +24,7 @@
 - **Jest** - It was doing this project that I learned how to make and manage tests on an application, it's quite simple once you get the flow of it, and a super-efficient tool for developers, it can save a lot of time.
 - **Supertest**- Also first time using this technology, It was used combined with jest as I 
 - **TypeScript** - It has been a great experience using and learning typescript, it's simply amazing how it can optimize work.
+- **Heroku** - Last but not least, I've learned how to deploy an application on heroku, an amazing service.
 
 
 ## 🏁 How to test it
@@ -52,4 +53,7 @@
 `POST` `/createuser` -> Create a new user based on the body of the request as -> user, email and name </br>
 `PUT` `/updateuser/:id` -> Update a specific user based on an id and body of the request with new data as -> user, email and name </br>
 `DELETE` `/products/:id` -> Delete a specific user based on an id </br>
+
+## 🌌 Test API ONLINE
+- Since the api is deployed on heroku, you can test the endpoints on your browser with the following url</br> `https://user-api-postgres-prisma.herokuapp.com/`
 
