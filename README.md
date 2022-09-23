@@ -51,5 +51,5 @@
 `GET` `/users/:id` -> Return a specific user based on an id </br>
 `POST` `/createuser` -> Create a new user based on the body of the request as -> user, email and name </br>
 `PUT` `/updateuser/:id` -> Update a specific user based on an id and body of the request with new data as -> user, email and name </br>
-`DELETE` `/products/:id` -> Delete a specific user based on an id </br>a
+`DELETE` `/products/:id` -> Delete a specific user based on an id </br>
 
