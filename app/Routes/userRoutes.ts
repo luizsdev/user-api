@@ -10,7 +10,7 @@ router.get("/users/:id", userController.getUserById);
 //CREATE AN USER WITH USER EMAIL AND NAME
 router.post("/createuser", userController.createUser);
 //UPDATE AN USER PASSING AN ID
-router.post("/updateuser/:id", userController.updateUser);
+router.put("/updateuser/:id", userController.updateUser);
 //DELETE AN USER PASSING AN ID
-router.get("/deleteuser/:id", userController.deleteUser);
+router.delete("/deleteuser/:id", userController.deleteUser);
 export default router;
