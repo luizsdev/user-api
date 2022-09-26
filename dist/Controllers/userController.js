@@ -11,6 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.prisma = void 0;
 const client_1 = require("@prisma/client");
+const encryptPassword_1 = require("../Services/encryptPassword");
 exports.prisma = new client_1.PrismaClient();
 class userController {
     static getAllUser(req, res) {
@@ -18,7 +19,6 @@ class userController {
             const users = yield exports.prisma.user.findMany({});
             if (users) {
                 res.status(200).send(users);
-                console.log(res);
             }
             else {
                 res.status(400);
@@ -44,14 +44,16 @@ class userController {
     }
     static createUser(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { name, user, email } = yield req.body;
+            const { name, user, email, password } = yield req.body;
+            const hashedPassword = (0, encryptPassword_1.encryptPassword)(password);
+            console.log(hashedPassword);
             const checkUser = yield exports.prisma.user.findFirst({
                 where: {
                     email,
                 },
             });
             if (checkUser) {
-                res.status(200).send("User already exists");
+                res.status(200).send('User already exists');
             }
             else {
                 yield exports.prisma.user
@@ -63,7 +65,7 @@ class userController {
                     },
                 })
                     .then(() => {
-                    res.status(200).send("User created sucessfully");
+                    res.status(200).send('User created sucessfully');
                 })
                     .catch(() => {
                     res.status(400).send("Couldn't create user");
@@ -94,7 +96,7 @@ class userController {
                     },
                 })
                     .then(() => {
-                    res.status(200).send("User updated sucessfully");
+                    res.status(200).send('User updated sucessfully');
                 })
                     .catch(() => {
                     res.status(400).send("Couldn't update user");
@@ -122,7 +124,7 @@ class userController {
                     },
                 })
                     .then(() => {
-                    res.status(200).send("User deleted sucessfully");
+                    res.status(200).send('User deleted sucessfully');
                 })
                     .catch(() => {
                     res.status(400).send("Couldn't delete user");

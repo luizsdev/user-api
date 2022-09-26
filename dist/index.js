@@ -20,8 +20,8 @@ const app = (0, express_1.default)();
 userRoutes_1.default.use((0, cors_1.default)());
 app.use((0, cors_1.default)());
 app.use(express_1.default.json());
-app.use("/", userRoutes_1.default);
+app.use('/', userRoutes_1.default);
 app.listen(PORT, () => __awaiter(void 0, void 0, void 0, function* () {
-    console.log("Server listening on port " + PORT);
+    console.log('Server listening on port ' + PORT);
 }));
 exports.default = app;

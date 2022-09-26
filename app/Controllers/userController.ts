@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { PrismaClient } from '@prisma/client';
+import { encryptPassword } from '../Services/encryptPassword';
 export const prisma = new PrismaClient();
 
 class userController {
@@ -26,7 +27,9 @@ class userController {
     }
   }
   static async createUser(req: Request, res: Response) {
-    const { name, user, email } = await req.body;
+    const { name, user, email, password } = await req.body;
+    const hashedPassword = encryptPassword(password);
+    console.log(hashedPassword);
     const checkUser = await prisma.user.findFirst({
       where: {
         email,

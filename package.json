@@ -23,8 +23,10 @@
   "homepage": "https://github.com/luizsdev/desafio-mentoria-api#readme",
   "dependencies": {
     "@prisma/client": "^4.3.1",
+    "@types/bcrypt": "^5.0.0",
     "@types/supertest": "^2.0.12",
     "axios": "^0.27.2",
+    "bcrypt": "^5.0.1",
     "body-parser": "^1.20.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
