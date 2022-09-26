@@ -1,16 +1,16 @@
-import { Router } from "express";
-import cors from 'cors'
+import { Router } from 'express';
+import cors from 'cors';
 const router = Router();
-import userController from "../Controllers/userController"
-router.use(cors())
+import userController from '../Controllers/userController';
+router.use(cors());
 //RETRIEVE ALL USERS
-router.get("/users", userController.getAllUser);
+router.get('/users', userController.getAllUser);
 //RETRIEVE AN USER BY ID
-router.get("/users/:id", userController.getUserById);
+router.get('/users/:id', userController.getUserById);
 //CREATE AN USER WITH USER EMAIL AND NAME
-router.post("/createuser", userController.createUser);
+router.post('/createuser', userController.createUser);
 //UPDATE AN USER PASSING AN ID
-router.put("/updateuser/:id", userController.updateUser);
+router.put('/updateuser/:id', userController.updateUser);
 //DELETE AN USER PASSING AN ID
-router.delete("/deleteuser/:id", userController.deleteUser);
+router.delete('/deleteuser/:id', userController.deleteUser);
 export default router;

@@ -1,18 +1,17 @@
-import {Request,Response} from "express"
-import { PrismaClient } from "@prisma/client";
+import { Request, Response } from 'express';
+import { PrismaClient } from '@prisma/client';
 export const prisma = new PrismaClient();
 
 class userController {
-  static async getAllUser(req:Request,res:Response ) {
+  static async getAllUser(req: Request, res: Response) {
     const users = await prisma.user.findMany({});
     if (users) {
       res.status(200).send(users);
-      console.log(res);
     } else {
       res.status(400);
     }
   }
-  static async getUserById(req:Request,res:Response) {
+  static async getUserById(req: Request, res: Response) {
     const toParseId = req.params.id;
     const id = parseInt(toParseId);
     const user = await prisma.user.findUnique({
@@ -26,7 +25,7 @@ class userController {
       res.send("Couldn't find user with given id");
     }
   }
-  static async createUser(req:Request,res:Response) {
+  static async createUser(req: Request, res: Response) {
     const { name, user, email } = await req.body;
     const checkUser = await prisma.user.findFirst({
       where: {
@@ -34,9 +33,8 @@ class userController {
       },
     });
     if (checkUser) {
-      res.status(200).send("User already exists");
-    } 
-    else {
+      res.status(200).send('User already exists');
+    } else {
       await prisma.user
         .create({
           data: {
@@ -46,14 +44,14 @@ class userController {
           },
         })
         .then(() => {
-          res.status(200).send("User created sucessfully");
+          res.status(200).send('User created sucessfully');
         })
         .catch(() => {
           res.status(400).send("Couldn't create user");
         });
     }
   }
-  static async updateUser(req:Request,res:Response) {
+  static async updateUser(req: Request, res: Response) {
     const { id } = req.params;
     const parsedId = parseInt(id);
     const { user, email, name } = req.body;
@@ -75,7 +73,7 @@ class userController {
           },
         })
         .then(() => {
-          res.status(200).send("User updated sucessfully");
+          res.status(200).send('User updated sucessfully');
         })
         .catch(() => {
           res.status(400).send("Couldn't update user");
@@ -84,7 +82,7 @@ class userController {
       res.status(400).send("Couldn't find user with given id :P");
     }
   }
-  static async deleteUser(req:Request,res:Response) {
+  static async deleteUser(req: Request, res: Response) {
     const { id } = req.params;
     const parsedId = parseInt(id);
     const checkUser = await prisma.user.findUnique({
@@ -100,7 +98,7 @@ class userController {
           },
         })
         .then(() => {
-          res.status(200).send("User deleted sucessfully");
+          res.status(200).send('User deleted sucessfully');
         })
         .catch(() => {
           res.status(400).send("Couldn't delete user");
