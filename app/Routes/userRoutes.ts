@@ -4,7 +4,10 @@ import { authController } from '../Controllers/authController';
 import cors from 'cors';
 const router = Router();
 router.use(cors());
+//REGISTER AN USER
 router.post('/register', authController.registerUser);
+//LOGIN AN USER
+router.get('/login', authController.loginUser);
 //RETRIEVE ALL USERS
 router.get('/users', userController.getAllUser);
 //RETRIEVE AN USER BY ID

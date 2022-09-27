@@ -8,8 +8,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.authController = void 0;
+const bcrypt_1 = __importDefault(require("bcrypt"));
 const encryptPassword_1 = require("../Services/encryptPassword");
 const userController_1 = require("./userController");
 class authController {
@@ -33,6 +37,28 @@ class authController {
                     },
                 });
                 return res.status(200).json('User created successfully');
+            }
+        });
+    }
+    static loginUser(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { user, password } = req.body;
+            const checkUser = yield userController_1.prisma.admin.findFirst({
+                where: {
+                    user,
+                },
+            });
+            if (!checkUser) {
+                return res.status(400).send('User or email incorrect');
+            }
+            else {
+                const match = yield bcrypt_1.default.compare(password, checkUser.password);
+                if (match) {
+                    return res.status(200).send('User logged in successfully');
+                }
+                else {
+                    return res.status(400).send('User or email incorrect');
+                }
             }
         });
     }

@@ -9,7 +9,10 @@ const authController_1 = require("../Controllers/authController");
 const cors_1 = __importDefault(require("cors"));
 const router = (0, express_1.Router)();
 router.use((0, cors_1.default)());
+//REGISTER AN USER
 router.post('/register', authController_1.authController.registerUser);
+//LOGIN AN USER
+router.get('/login', authController_1.authController.loginUser);
 //RETRIEVE ALL USERS
 router.get('/users', userController_1.default.getAllUser);
 //RETRIEVE AN USER BY ID
