@@ -3,6 +3,8 @@ import bcrypt from 'bcrypt';
 import { encryptPassword } from '../Services/encryptPassword';
 import { Request, Response } from 'express';
 import { prisma } from './userController';
+import jwt from 'jsonwebtoken';
+
 export class authController {
   static async registerUser(req: Request, res: Response) {
     const { user, password } = req.body;
@@ -26,6 +28,7 @@ export class authController {
   }
   static async loginUser(req: Request, res: Response) {
     const { user, password } = req.body;
+    const privateKey = process.env.SECRET_KEY;
     const checkUser = await prisma.admin.findFirst({
       where: {
         user,
@@ -36,7 +39,8 @@ export class authController {
     } else {
       const match = await bcrypt.compare(password, checkUser.password);
       if (match) {
-        return res.status(200).send('User logged in successfully');
+        const token = jwt.sign({ user: user }, privateKey, { algorithm: 'HS256' });
+        return res.status(200).json({ status: 'approved', token });
       } else {
         return res.status(400).send('User or email incorrect');
       }

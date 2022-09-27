@@ -16,6 +16,7 @@ exports.authController = void 0;
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const encryptPassword_1 = require("../Services/encryptPassword");
 const userController_1 = require("./userController");
+const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 class authController {
     static registerUser(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -43,6 +44,7 @@ class authController {
     static loginUser(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { user, password } = req.body;
+            const privateKey = process.env.SECRET_KEY;
             const checkUser = yield userController_1.prisma.admin.findFirst({
                 where: {
                     user,
@@ -54,7 +56,8 @@ class authController {
             else {
                 const match = yield bcrypt_1.default.compare(password, checkUser.password);
                 if (match) {
-                    return res.status(200).send('User logged in successfully');
+                    const token = jsonwebtoken_1.default.sign({ user: user }, privateKey, { algorithm: 'HS256' });
+                    return res.status(200).json({ status: 'approved', token });
                 }
                 else {
                     return res.status(400).send('User or email incorrect');
