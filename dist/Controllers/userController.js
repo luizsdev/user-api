@@ -11,7 +11,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.prisma = void 0;
 const client_1 = require("@prisma/client");
-const encryptPassword_1 = require("../Services/encryptPassword");
 exports.prisma = new client_1.PrismaClient();
 class userController {
     static getAllUser(req, res) {
@@ -21,7 +20,7 @@ class userController {
                 res.status(200).send(users);
             }
             else {
-                res.status(400);
+                res.status(400).json({ message: "Couldn't find any user" });
             }
         });
     }
@@ -38,21 +37,20 @@ class userController {
                 res.status(200).send(user);
             }
             else {
-                res.send("Couldn't find user with given id");
+                res.json({ message: "Couldn't find user with given id" });
             }
         });
     }
     static createUser(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { name, user, email, password } = yield req.body;
-            const hashedPassword = (0, encryptPassword_1.encryptPassword)(password);
+            const { name, user, email } = yield req.body;
             const checkUser = yield exports.prisma.user.findFirst({
                 where: {
                     email,
                 },
             });
             if (checkUser) {
-                res.status(404).send('User already exists');
+                res.status(404).json({ message: 'User already exists' });
             }
             else {
                 yield exports.prisma.user
@@ -64,10 +62,10 @@ class userController {
                     },
                 })
                     .then(() => {
-                    res.status(200).send('User created sucessfully');
+                    res.status(200).json({ message: 'User created sucessfully' });
                 })
                     .catch(() => {
-                    res.status(400).send("Couldn't create user");
+                    res.status(400).json({ message: "Couldn't create user" });
                 });
             }
         });
@@ -95,14 +93,14 @@ class userController {
                     },
                 })
                     .then(() => {
-                    res.status(200).send('User updated sucessfully');
+                    res.status(200).json({ message: 'User updated sucessfully' });
                 })
                     .catch(() => {
-                    res.status(400).send("Couldn't update user");
+                    res.status(400).json({ message: "Couldn't update user" });
                 });
             }
             else {
-                res.status(400).send("Couldn't find user with given id :P");
+                res.status(400).json({ message: "Couldn't find user with given id" });
             }
         });
     }
@@ -123,14 +121,14 @@ class userController {
                     },
                 })
                     .then(() => {
-                    res.status(200).send('User deleted sucessfully');
+                    res.status(200).json({ message: 'User deleted sucessfully' });
                 })
                     .catch(() => {
-                    res.status(400).send("Couldn't delete user");
+                    res.status(400).json({ message: "Couldn't delete user" });
                 });
             }
             else {
-                res.status(400).send("Couldn't not find user with given id");
+                res.status(400).json({ message: "Couldn't not find user with given id" });
             }
         });
     }

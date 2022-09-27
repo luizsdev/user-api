@@ -3,7 +3,6 @@ import userController from '../Controllers/userController';
 import { authController } from '../Controllers/authController';
 import cors from 'cors';
 import { checkJwt } from '../middleWares/checkJwt';
-import { check } from 'prettier';
 
 const router = Router();
 router.use(cors());

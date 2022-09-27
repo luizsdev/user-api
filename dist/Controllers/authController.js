@@ -37,7 +37,9 @@ class authController {
                         password: hashedPassword,
                     },
                 });
-                return res.status(200).json('User created successfully');
+                return res.status(200).json({
+                    message: 'User created successfully',
+                });
             }
         });
     }
@@ -51,7 +53,9 @@ class authController {
                 },
             });
             if (!checkUser) {
-                return res.status(400).send('User or email incorrect');
+                return res.status(400).json({
+                    message: 'User not found',
+                });
             }
             else {
                 const match = yield bcrypt_1.default.compare(password, checkUser.password);
@@ -60,7 +64,9 @@ class authController {
                     return res.status(200).json({ status: 'approved', token });
                 }
                 else {
-                    return res.status(400).send('User or email incorrect');
+                    return res.status(400).json({
+                        message: 'Invalid user or password',
+                    });
                 }
             }
         });

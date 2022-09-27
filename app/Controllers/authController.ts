@@ -23,7 +23,9 @@ export class authController {
           password: hashedPassword,
         },
       });
-      return res.status(200).json('User created successfully');
+      return res.status(200).json({
+        message: 'User created successfully',
+      });
     }
   }
   static async loginUser(req: Request, res: Response) {
@@ -35,14 +37,18 @@ export class authController {
       },
     });
     if (!checkUser) {
-      return res.status(400).send('User or email incorrect');
+      return res.status(400).json({
+        message: 'User not found',
+      });
     } else {
       const match = await bcrypt.compare(password, checkUser.password);
       if (match) {
         const token = jwt.sign({ user: user }, privateKey, { algorithm: 'HS256' });
         return res.status(200).json({ status: 'approved', token });
       } else {
-        return res.status(400).send('User or email incorrect');
+        return res.status(400).json({
+          message: 'Invalid user or password',
+        });
       }
     }
   }
