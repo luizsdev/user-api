@@ -46,14 +46,13 @@ class userController {
         return __awaiter(this, void 0, void 0, function* () {
             const { name, user, email, password } = yield req.body;
             const hashedPassword = (0, encryptPassword_1.encryptPassword)(password);
-            console.log(hashedPassword);
             const checkUser = yield exports.prisma.user.findFirst({
                 where: {
                     email,
                 },
             });
             if (checkUser) {
-                res.status(200).send('User already exists');
+                res.status(404).send('User already exists');
             }
             else {
                 yield exports.prisma.user
