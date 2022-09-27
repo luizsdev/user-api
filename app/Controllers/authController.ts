@@ -14,13 +14,13 @@ export class authController {
     if (checkUser) {
       return res.status(400).json({ message: 'User already exists' });
     } else {
-      const newUser: Admin = await prisma.admin.create({
+      await prisma.admin.create({
         data: {
           user,
           password: hashedPassword,
         },
       });
-      return res.status(200).json(newUser);
+      return res.status(200).json('User created successfully');
     }
   }
   // static async loginUser(req: Request, res: Response) {}
