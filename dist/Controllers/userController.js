@@ -62,6 +62,7 @@ class userController {
                         name,
                         user,
                         email,
+                        password: hashedPassword,
                     },
                 })
                     .then(() => {

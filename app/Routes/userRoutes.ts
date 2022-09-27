@@ -1,8 +1,10 @@
 import { Router } from 'express';
+import userController from '../Controllers/userController';
+import { authController } from '../Controllers/authController';
 import cors from 'cors';
 const router = Router();
-import userController from '../Controllers/userController';
 router.use(cors());
+router.post('/register', authController.registerUser);
 //RETRIEVE ALL USERS
 router.get('/users', userController.getAllUser);
 //RETRIEVE AN USER BY ID

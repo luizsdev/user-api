@@ -29,14 +29,13 @@ class userController {
   static async createUser(req: Request, res: Response) {
     const { name, user, email, password } = await req.body;
     const hashedPassword = encryptPassword(password);
-    console.log(hashedPassword);
     const checkUser = await prisma.user.findFirst({
       where: {
         email,
       },
     });
     if (checkUser) {
-      res.status(200).send('User already exists');
+      res.status(404).send('User already exists');
     } else {
       await prisma.user
         .create({
@@ -44,6 +43,7 @@ class userController {
             name,
             user,
             email,
+            password: hashedPassword,
           },
         })
         .then(() => {

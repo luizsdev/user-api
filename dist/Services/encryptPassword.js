@@ -7,8 +7,7 @@ exports.encryptPassword = void 0;
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const saltRounds = 10;
 const encryptPassword = (password) => {
-    bcrypt_1.default.hash(password, saltRounds, (err, hash) => {
-        return hash;
-    });
+    const hash = bcrypt_1.default.hashSync(password, saltRounds);
+    return hash;
 };
 exports.encryptPassword = encryptPassword;
