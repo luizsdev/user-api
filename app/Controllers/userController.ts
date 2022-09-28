@@ -1,6 +1,5 @@
 import { Request, Response } from 'express';
 import { PrismaClient } from '@prisma/client';
-import { encryptPassword } from '../Services/encryptPassword';
 export const prisma = new PrismaClient();
 
 class userController {

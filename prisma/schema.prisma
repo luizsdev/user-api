@@ -11,6 +11,7 @@ datasource db {
 }
 
 model Admin {
+  id       Int    @id @default(autoincrement())
   user     String @unique
   password String
 }

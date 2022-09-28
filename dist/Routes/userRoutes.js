@@ -11,9 +11,9 @@ const checkJwt_1 = require("../middleWares/checkJwt");
 const router = (0, express_1.Router)();
 router.use((0, cors_1.default)());
 //REGISTER AN USER
-router.post('/register', authController_1.authController.registerUser);
+router.post('/auth/register', authController_1.authController.registerUser);
 //LOGIN AN USER
-router.get('/login', authController_1.authController.loginUser);
+router.get('/auth/login', authController_1.authController.loginUser);
 //RETRIEVE ALL USERS
 router.get('/users', checkJwt_1.checkJwt, userController_1.default.getAllUser);
 //RETRIEVE AN USER BY ID
@@ -24,4 +24,6 @@ router.post('/createuser', checkJwt_1.checkJwt, userController_1.default.createU
 router.put('/updateuser/:id', checkJwt_1.checkJwt, userController_1.default.updateUser);
 //DELETE AN USER PASSING AN ID
 router.delete('/deleteuser/:id', checkJwt_1.checkJwt, userController_1.default.deleteUser);
+//DELETE AN ADMIN USER
+router.delete('/deleteadmin/:id', authController_1.authController.deleteAdmin);
 exports.default = router;

@@ -47,9 +47,27 @@ export class authController {
         return res.status(200).json({ status: 'approved', token });
       } else {
         return res.status(400).json({
-          message: 'Invalid user or password',
+          message: 'Invalid user or password ',
         });
       }
     }
+  }
+  static async deleteAdmin(req: Request, res: Response) {
+    const { id } = req.params;
+    const parsedId = parseInt(id);
+    await prisma.admin
+      .delete({
+        where: {
+          id: parsedId,
+        },
+      })
+      .then(() => {
+        return res.status(200).json({
+          message: 'User deleted successfully',
+        });
+      })
+      .catch((e: Error) => {
+        console.log(e);
+      });
   }
 }

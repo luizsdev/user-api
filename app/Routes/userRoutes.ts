@@ -7,9 +7,9 @@ import { checkJwt } from '../middleWares/checkJwt';
 const router = Router();
 router.use(cors());
 //REGISTER AN USER
-router.post('/register', authController.registerUser);
+router.post('/auth/register', authController.registerUser);
 //LOGIN AN USER
-router.get('/login', authController.loginUser);
+router.get('/auth/login', authController.loginUser);
 //RETRIEVE ALL USERS
 router.get('/users', checkJwt, userController.getAllUser);
 //RETRIEVE AN USER BY ID
@@ -20,5 +20,7 @@ router.post('/createuser', checkJwt, userController.createUser);
 router.put('/updateuser/:id', checkJwt, userController.updateUser);
 //DELETE AN USER PASSING AN ID
 router.delete('/deleteuser/:id', checkJwt, userController.deleteUser);
+//DELETE AN ADMIN USER
+router.delete('/auth/deleteadmin/:id', checkJwt, authController.deleteAdmin);
 
 export default router;
